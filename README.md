@@ -1,6 +1,6 @@
 # 🛡️ AI Thermodynamic Defense Chain (v2.0)
 
-### Advanced Cyber-Resilience for LLMs: Beyond Static Content Filtering
+### Cyber-Resilience for LLMs: Beyond Static Content Filtering
 
 **Defense Chain v2.0** is a security architecture designed to neutralize sophisticated **Social Engineering** and **Slow Drift** attacks that bypass traditional semantic guardrails.
 
