@@ -297,8 +297,8 @@ Try SGEMAS on your own conversations. Watch the energy curve build in real time.
 
 **Mustapha Hamdi**  
 InnoDeep Research Lab  
-📧 hamdi@innodeep.ai  
-🔗 [LinkedIn](https://linkedin.com/in/hamdi-mustapha)
+📧 mustapha.hamdi@innodeep.net  
+🔗 [LinkedIn](https://linkedin.com/in/mustapha-hamdi)
 
 For research collaborations, deployment discussions, or enterprise inquiries.
 
