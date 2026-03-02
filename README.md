@@ -1,7 +1,7 @@
 <div align="center">
 
-<img src="https://img.shields.io/badge/SGEMAS-v1.0-1A7A4A?style=for-the-badge&logoColor=white" />
-<img src="https://img.shields.io/badge/NeurIPS-2025-7B2D8B?style=for-the-badge" />
+<img src="https://img.shields.io/badge/SGEMAS-v3.0-1A7A4A?style=for-the-badge&logoColor=white" />
+<img src="https://img.shields.io/badge/Year-2025-7B2D8B?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Latency-4.8ms_p50-27AE60?style=for-the-badge" />
 <img src="https://img.shields.io/badge/sloDR-×26_gain-E74C3C?style=for-the-badge" />
 
@@ -173,9 +173,13 @@ Standard benchmarks often interleave malicious prompts with completely unrelated
 This benchmark strictly matches attack trajectories and exploratory queries within identical, localized semantic topics (Cybersecurity, Medical, Finance, Infrastructure).
 
 <div align="center">
-<img src="figures/fig1_tcse_mss_violin.png" width="80%" alt="Topic-Constrained Security Evaluation (TCSE) MSS separation"/>
-<br/>
-<sub><b>Figure 5.</b> SGEMAS's Phase 2 encoder isolates adversarial drift within identically-matched semantic contexts, yielding a positive separation (+0.211) without raising the false positive baseline.</sub>
+
+<img src="figures/fig1_tcse_mss_violin.png" width="48%" alt="A. Intra-Topic Distribution of MSS_max" />
+<img src="figures/fig2_tcse_topic_delta.png" width="48%" alt="B. Mean Topic-Delta per domain" />
+
+<img src="figures/fig3_tcse_energy_accum.png" width="70%" alt="C. Thermodynamic Energy Accumulation (E_t)" style="margin-top: 15px;" />
+<br/><br/>
+<sub><b>Figure 5.</b> Results of the Topic-Constrained Security Evaluation (TCSE). <b>(A)</b> Distinct MSS separation between attack and benign queries. <b>(B)</b> Strict positive Topic-$\Delta$ across all evaluated domains. <b>(C)</b> Exponential thermodynamic energy deviation (E_t) tracking the slow drift attack trajectory against the benign baseline.</sub>
 </div>
 
 <br/>
