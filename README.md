@@ -166,12 +166,30 @@ Every configuration shows positive gain — minimum +22pp, maximum +68pp.</sub>
 
 ---
 
+### Topic-Constrained Security Evaluation (TCSE)
+
+Standard benchmarks often interleave malicious prompts with completely unrelated benign queries, leading models to memorize syntactic domains (e.g., medical keywords) instead of structural safety failures. To prove that SGEMAS isolates pure adversarial intent from raw domain terminology, we introduced the **Topic-Constrained Security Evaluation (TCSE)**.
+
+This benchmark strictly matches attack trajectories and exploratory queries within identical, localized semantic topics (Cybersecurity, Medical, Finance, Infrastructure).
+
+<div align="center">
+<img src="figures/fig1_tcse_mss_violin.png" width="80%" alt="Topic-Constrained Security Evaluation (TCSE) MSS separation"/>
+<br/>
+<sub><b>Figure 5.</b> SGEMAS's Phase 2 encoder isolates adversarial drift within identically-matched semantic contexts, yielding a positive separation (+0.211) without raising the false positive baseline.</sub>
+</div>
+
+<br/>
+
+**Topic-Δ:** SGEMAS exhibits a solid **+0.211 Topic-$\Delta$** — mathematically separating intentional attacks from standard exploratory noise in constrained topics, while enforcing a **0.0% FPR** on complex benign dialogues across all four tested domains.
+
+---
+
 ### Parameter Sweep — Pareto Frontier
 
 <div align="center">
 <img src="figures/fig1_pareto_frontier.png" width="80%" alt="Pareto frontier FPR vs sloDR"/>
 <br/>
-<sub><b>Figure 5.</b> Pareto frontier: Benign FPR vs Slow Drift DR.
+<sub><b>Figure 6.</b> Pareto frontier: Benign FPR vs Slow Drift DR.
 Safety Encoder (solid) dominates MiniLM (dashed) across every operating point.
 Paper operating point: gate=3.5, E_crit=12 → sloDR=52%, FPR=30%.
 At FPR≤20%: sloDR=40% (gate=3.0, E_crit=25).</sub>
@@ -182,7 +200,7 @@ At FPR≤20%: sloDR=40% (gate=3.0, E_crit=25).</sub>
 <div align="center">
 <img src="figures/fig5_heatmap_slodr.png" width="90%" alt="sloDR heatmap"/>
 <br/>
-<sub><b>Figure 6.</b> Slow Drift DR heatmap across the full parameter grid (gate × E_crit).
+<sub><b>Figure 7.</b> Slow Drift DR heatmap across the full parameter grid (gate × E_crit).
 ★ = configurations achieving sloDR ≥ 50%. Red box = paper operating point.
 MiniLM: maximum sloDR = 2%. Safety Encoder: maximum sloDR = 70%.</sub>
 </div>
@@ -202,9 +220,9 @@ proving that session memory and energy accumulation are each separately necessar
 <div align="center">
 <img src="figures/fig10_bootstrap_ci.png" width="75%" alt="Bootstrap confidence intervals"/>
 <br/>
-<sub><b>Figure 7.</b> Bootstrap 95% CIs (B=2,000) on MSS_max.
+<sub><b>Figure 8.</b> Bootstrap 95% CIs (B=2,000) on MSS_max.
 Full system CI [2.877, 4.408] is completely disjoint from NoMemory CI [0.979, 0.981]
-(p &lt; 0.001, t=187.4). Memory ablation eliminates all discriminative power.</sub>
+(p < 0.001, t=187.4). Memory ablation eliminates all discriminative power.</sub>
 </div>
 
 ---
