@@ -19,7 +19,11 @@
 [🔴 **Live Demo**](#demo) · [📄 Paper (arXiv)](#paper) · [📊 Results](#results) · [📬 Contact](#contact)
 
 <br/>
-
+<div align="center">
+<img src="figures/dashboard.png" width="95%" alt="Energy curves for benign, direct attack, and slow drift sessions"/>
+<br/>
+<sub> Dashboard of SGEMA Defense Chain.</sub>
+</div>
 ---
 
 </div>
