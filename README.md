@@ -312,10 +312,10 @@ Try SGEMAS on your own conversations. Watch the energy curve build in real time.
 - [x] Defense Chain (LlamaGuard L1 + SGEMAS L2)  
 - [x] Safety Encoder (contrastive fine-tuning, ×7.4 gain)
 - [x] Full evaluation: ablation, Bootstrap CI, ROC, Pareto sweep
-- [x] NeurIPS 2025 submission
-- [ ] Public API (rate-limited free tier)
+- [x] Paper submission
+- [x] Public API (rate-limited free tier)
 - [ ] sloDR > 70% via corpus-specific calibration
-- [ ] Multi-agent extension (SGEMAS-v2)
+- [ ] Multi-agent extension (SGEMAS-v4)
 
 ---
 
