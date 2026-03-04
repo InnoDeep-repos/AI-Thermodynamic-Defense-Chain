@@ -20,7 +20,7 @@
 
 <br/>
 <div align="center">
-<img src="figures/dashboard.png" width="95%" alt="Energy curves for benign, direct attack, and slow drift sessions"/>
+<img src="figures/dashboard2.png" width="95%" alt="Energy curves for benign, direct attack, and slow drift sessions"/>
 <br/>
 <sub> Dashboard of SGEMA Defense Chain.</sub>
 </div>
