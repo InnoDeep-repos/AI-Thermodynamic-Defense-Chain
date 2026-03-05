@@ -143,7 +143,7 @@ While standard guardrails rely on mean-pooling — which dilutes the signal of a
 ### The Trajectory Encoder Architecture
 
 <div align="center">
-<img src="figures/v7_architecture.png" width="85%" alt="Temporal Attention Architecture"/>
+<img src="figures/architecture.png" width="85%" alt="Temporal Attention Architecture"/>
 <br/>
 <sub><b>Figure 3.</b> Trajectory Engine Architecture: Temporal Attention Head.</sub>
 </div>
