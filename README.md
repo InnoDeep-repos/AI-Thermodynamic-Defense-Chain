@@ -140,13 +140,6 @@ The core innovation of this engine is the replacement of stateless pooling with 
 
 While standard guardrails rely on mean-pooling — which dilutes the signal of a slow attack — the **Trajectory Engine** treats the conversation as a mathematical flow.
 
-### The Trajectory Encoder Architecture
-
-<div align="center">
-<img src="figures/architecture.png" width="85%" alt="Temporal Attention Architecture"/>
-<br/>
-<sub><b>Figure 3.</b> Trajectory Engine Architecture: Temporal Attention Head.</sub>
-</div>
 
 #### Trajectory Tracking Logic:
 - **Queries ($Q$):** The *Current* user intent.
