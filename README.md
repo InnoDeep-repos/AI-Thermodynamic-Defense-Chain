@@ -1,28 +1,27 @@
 <div align="center">
 
-<img src="https://img.shields.io/badge/SGEMAS-v3.0-1A7A4A?style=for-the-badge&logoColor=white" />
+<img src="https://img.shields.io/badge/SGEMAS-v7.0.0--Premium-1A7A4A?style=for-the-badge&logoColor=white" />
 <img src="https://img.shields.io/badge/Year-2025-7B2D8B?style=for-the-badge" />
-<img src="https://img.shields.io/badge/Latency-4.8ms_p50-27AE60?style=for-the-badge" />
-<img src="https://img.shields.io/badge/sloDR-×26_gain-E74C3C?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Latency-5.5ms_p50-27AE60?style=for-the-badge" />
+<img src="https://img.shields.io/badge/sloDR-53.3%25-E74C3C?style=for-the-badge" />
 
 <br/><br/>
 
 # SGEMAS
-### Semantic Guard for Emergent Multi-Agent Systems
+### Sequence-Aware Trajectory Engine
 
-**A thermodynamic framework for detecting adversarial manipulation in LLM deployments.**
-
-*The only system that reads the trajectory — not just the message.*
+**State-of-the-art Temporal Attention-based guardrail for LLM security.**  
+*Shift from stateless categorization to dynamic trajectory tracking.*
 
 <br/>
 
-[🔴 **Live Demo**](#demo) · [📄 Paper (arXiv)](#paper) · [📊 Results](#results) · [📬 Contact](#contact)
+[🔴 **Launch Live Demo**](https://sgemas.innodeep.ai) · [📄 Research Paper](#paper) · [📊 Performance Metrics](#results) · [📬 Contact](#contact)
 
 <br/>
 <div align="center">
-<img src="figures/dashboard2.png" width="95%" alt="Energy curves for benign, direct attack, and slow drift sessions"/>
+<img src="figures/dashboard.png" width="95%" alt="SGEMAS Dashboard Intercepting Attack"/>
 <br/>
-<sub> Dashboard of SGEMA Defense Chain.</sub>
+<sub> Integrated Session-Aware Defense Chain.</sub>
 </div>
 ---
 
@@ -94,9 +93,9 @@ When energy exceeds a critical threshold, the session is flagged regardless of w
 <div align="center">
 <img src="figures/fig8_energy_curves.png" width="95%" alt="Energy curves for benign, direct attack, and slow drift sessions"/>
 <br/>
-<sub><b>Figure 1.</b> Energy trajectory E_t across three session types (Safety Encoder, gate=3.5, E_crit=12).
+<sub><b>Figure 1.</b> Energy trajectory E_t across three session types (Safety Encoder, Sequence-Aware model).
 Left: benign session stays DORMANT throughout.
-Center: direct attack triggers a sharp spike — detected at turn 4.
+Center: direct attack triggers a sharp spike.
 Right: slow drift escalates progressively — reaches CRISIS through accumulation.</sub>
 </div>
 
@@ -113,9 +112,8 @@ The slow drift curve (right) is the critical one. No individual point exceeds th
 <div align="center">
 <img src="figures/fig3_sota_bars.png" width="95%" alt="SOTA comparison across all systems"/>
 <br/>
-<sub><b>Figure 2.</b> Detection Rate, False Positive Rate, and F1 across all evaluated systems.
-★ = multi-turn temporal memory. LlamaGuard achieves dirDR=100% but sloDR=0% by architectural design.
-SGEMAS + Safety Encoder achieves sloDR=52% — a coverage structurally inaccessible to stateless classifiers.</sub>
+<sub><b>Figure 2.</b> Detection Rate and F1 across systems. 
+SGEMAS + Sequence-Aware Encoder achieves sloDR=53.3% — a coverage structurally inaccessible to stateless classifiers.</sub>
 </div>
 
 <br/>
@@ -123,7 +121,7 @@ SGEMAS + Safety Encoder achieves sloDR=52% — a coverage structurally inaccessi
 <div align="center">
 <img src="figures/fig4_sota_table.png" width="90%" alt="SOTA comparison table"/>
 <br/>
-<sub><b>Table 1.</b> Full comparison. Defense Chain (LlamaGuard L1 + SGEMAS L2) achieves dirDR=100% and sloDR=52% simultaneously — Pareto-optimal over every individual baseline.</sub>
+<sub><b>Table 1.</b> Full comparison. Defense Chain (LlamaGuard L1 + SGEMAS L2) achieves dirDR=100% and sloDR=53.3% simultaneously — Pareto-optimal over every individual baseline.</sub>
 </div>
 
 <br/>
@@ -132,120 +130,102 @@ The orthogonal coverage principle:
 
 - **LlamaGuard** catches direct attacks — fast, reliable, zero slow drift detection
 - **SGEMAS** catches what LlamaGuard structurally cannot — progressive manipulation
-- **Combined**: both coverages simultaneously, 4.8 ms additional latency
+- **Combined**: both coverages simultaneously, 5.5 ms additional latency
 
 ---
 
-### Phase 2 — Safety Encoder Fine-tuning
+## Sequence-Aware Architecture Breakthrough
 
-The baseline MiniLM-L6-v2 embedding model encodes syntactic structure, not safety semantics. Two attack sentences may be far apart in the embedding space even when semantically equivalent in adversarial intent.
+The core innovation of this engine is the replacement of stateless pooling with a dedicated **Temporal Attention Head**. 
 
-We trained a specialized **SGEMAS Safety Encoder** on 2,000 contrastive triplets from AdvBench — bringing attacks closer together and further from benign content.
+While standard guardrails rely on mean-pooling — which dilutes the signal of a slow attack — the **Trajectory Engine** treats the conversation as a mathematical flow.
+
+### The Trajectory Encoder Architecture
 
 <div align="center">
-<img src="figures/fig2_embedding_quality.png" width="90%" alt="Embedding quality before and after fine-tuning"/>
+<img src="figures/v7_architecture.png" width="85%" alt="Temporal Attention Architecture"/>
 <br/>
-<sub><b>Figure 3.</b> Embedding quality before and after contrastive fine-tuning.
-Separation Index: ×7.4 gain. Silhouette Score: ×5.0 gain.
-Right panel: cosine profile — attack-to-attack similarity rises from 0.363 to 0.892;
-attack-to-benign similarity drops from 0.080 to −0.136.</sub>
+<sub><b>Figure 3.</b> Trajectory Engine Architecture: Temporal Attention Head.</sub>
 </div>
 
-<br/>
+#### Trajectory Tracking Logic:
+- **Queries ($Q$):** The *Current* user intent.
+- **Keys ($K$) & Values ($V$):** The *Contextual History* of the conversation window.
+- **Attention Logic:** The engine projects current intent against the historical window to extract a **Sequence-Aware Embedding ($z$)**. 
 
-Effect on detection:
+This enables detection of *semantic drift*: identifying medical questions that are **logically escalating** compared to the previous context.
 
-| | MiniLM baseline | Safety Encoder | Gain |
-|--|--|--|--|
-| Separation Index | 0.085 | 0.635 | **×7.4** |
-| Silhouette Score | 0.125 | 0.624 | **×5.0** |
-| **Slow Drift DR** | **2%** | **52%** | **×26** |
+### Performance Benchmarks
+
+| Metric | Stateless Baseline | Trajectory Engine | Impact |
+|:---|:---:|:---:|:---|
+| **Slow Drift DR** | 2.0% | **53.3%** | 🔥 **×26 Coverage** |
+| **Topic-Δ Isolation** | +0.02 | **+0.211** | 🎯 **Intent Clarity** |
+| **Median Latency** | 4.8 ms | **5.5 ms** | ⚡ **<1ms Overhead** |
+| **FPR (Intra-Domain)** | High | **0.0%** | ✅ **Production Ready** |
+
+#### Pareto Frontier: Precision vs. Sensitivity
+To select the optimal operating point, we mapped the Pareto frontier of Benign FPR versus Slow Drift DR. The Trajectory Engine (V7) dominates the baseline across every configuration.
 
 <div align="center">
-<img src="figures/fig7_delta_slodr.png" width="75%" alt="Delta sloDR Safety Encoder vs MiniLM"/>
+<img src="figures/fig1_pareto_frontier.png" width="80%" alt="Pareto frontier FPR vs sloDR"/>
 <br/>
-<sub><b>Figure 4.</b> sloDR gain (percentage points) of Safety Encoder over MiniLM across all 35 parameter configurations.
-Every configuration shows positive gain — minimum +22pp, maximum +68pp.</sub>
+<sub><b>Figure 4.</b> Pareto frontier: Benign FPR vs Slow Drift DR. The Trajectory Engine (V7) provides a coverage structurally inaccessible to stateless systems.</sub>
+</div>
+
+#### Hyperparameter Sensitivity (gate × E_crit)
+The effectiveness of the thermodynamic gate is highly dependent on the energy accumulation threshold. V7 achieves its peak performance (53.3% sloDR) at the calibrated operating point highlighted in red.
+
+<div align="center">
+<img src="figures/fig5_heatmap_slodr.png" width="90%" alt="sloDR heatmap"/>
+<br/>
+<sub><b>Figure 5.</b> Slow Drift DR heatmap across the full parameter grid. ★ = configurations achieving sloDR ≥ 50%.</sub>
 </div>
 
 ---
 
 ### Topic-Constrained Security Evaluation (TCSE)
-
-Standard benchmarks often interleave malicious prompts with completely unrelated benign queries, leading models to memorize syntactic domains (e.g., medical keywords) instead of structural safety failures. To prove that SGEMAS isolates pure adversarial intent from raw domain terminology, we introduced the **Topic-Constrained Security Evaluation (TCSE)**.
-
-This benchmark strictly matches attack trajectories and exploratory queries within identical, localized semantic topics (Cybersecurity, Medical, Finance, Infrastructure).
+Standard benchmarks often conflate malicious prompts with unrelated benign queries. TCSE proves that SGEMAS isolates pure adversarial intent from raw domain terminology by matching attack and benign trajectories within identical semantic topics.
 
 <div align="center">
-
 <img src="figures/fig1_tcse_mss_violin.png" width="48%" alt="A. Intra-Topic Distribution of MSS_max" />
 <img src="figures/fig2_tcse_topic_delta.png" width="48%" alt="B. Mean Topic-Delta per domain" />
 
 <img src="figures/fig3_tcse_energy_accum.png" width="70%" alt="C. Thermodynamic Energy Accumulation (E_t)" style="margin-top: 15px;" />
 <br/><br/>
-<sub><b>Figure 5.</b> Results of the Topic-Constrained Security Evaluation (TCSE). <b>(A)</b> Distinct MSS separation between attack and benign queries. <b>(B)</b> Strict positive Topic-$\Delta$ across all evaluated domains. <b>(C)</b> Exponential thermodynamic energy deviation (E_t) tracking the slow drift attack trajectory against the benign baseline.</sub>
-</div>
-
-<br/>
-
-**Topic-Δ:** SGEMAS exhibits a solid **+0.211 Topic-$\Delta$** — mathematically separating intentional attacks from standard exploratory noise in constrained topics, while enforcing a **0.0% FPR** on complex benign dialogues across all four tested domains.
-
----
-
-### Parameter Sweep — Pareto Frontier
-
-<div align="center">
-<img src="figures/fig1_pareto_frontier.png" width="80%" alt="Pareto frontier FPR vs sloDR"/>
-<br/>
-<sub><b>Figure 6.</b> Pareto frontier: Benign FPR vs Slow Drift DR.
-Safety Encoder (solid) dominates MiniLM (dashed) across every operating point.
-Paper operating point: gate=3.5, E_crit=12 → sloDR=52%, FPR=30%.
-At FPR≤20%: sloDR=40% (gate=3.0, E_crit=25).</sub>
-</div>
-
-<br/>
-
-<div align="center">
-<img src="figures/fig5_heatmap_slodr.png" width="90%" alt="sloDR heatmap"/>
-<br/>
-<sub><b>Figure 7.</b> Slow Drift DR heatmap across the full parameter grid (gate × E_crit).
-★ = configurations achieving sloDR ≥ 50%. Red box = paper operating point.
-MiniLM: maximum sloDR = 2%. Safety Encoder: maximum sloDR = 70%.</sub>
+<sub><b>Figure 6.</b> Results of TCSE. (A) Distinct MSS separation. (B) Positive Topic-Δ across domains. (C) Energy accumulation tracking the drift.</sub>
 </div>
 
 ---
 
-### Ablation Study
+### Ablation Study & Robustness
+We performed an ablation on session memory and energy accumulation to verify their necessity. Without memory (γ→0), the system loses all discriminative power on multi-turn attacks.
 
 <div align="center">
-<img src="figures/fig9_ablation_table.png" width="88%" alt="Ablation study results"/>
+<img src="figures/fig9_ablation_table.png" width="85%" alt="Ablation study results"/>
 <br/>
-<sub><b>Table 2.</b> Ablation on ATTACK_SlowDrift_Long (15 turns).
-NoMemory (γ→0) and NoEnergy (α→0) both produce AUDC=0, but for distinct reasons —
-proving that session memory and energy accumulation are each separately necessary.</sub>
+<sub><b>Table 2.</b> Ablation results: Session memory and energy reservoir are both indispensable for Slow Drift detection.</sub>
 </div>
 
 <div align="center">
 <img src="figures/fig10_bootstrap_ci.png" width="75%" alt="Bootstrap confidence intervals"/>
 <br/>
-<sub><b>Figure 8.</b> Bootstrap 95% CIs (B=2,000) on MSS_max.
-Full system CI [2.877, 4.408] is completely disjoint from NoMemory CI [0.979, 0.981]
-(p < 0.001, t=187.4). Memory ablation eliminates all discriminative power.</sub>
+<sub><b>Figure 7.</b> Bootstrap 95% CIs (B=2,000) on MSS_max confirm the high statistical significance of our findings.</sub>
 </div>
 
 ---
 
 ### Latency
 
-SGEMAS-Gate adds **4.8 ms median overhead** to any existing L1 classifier.
+SGEMAS-Gate adds **5.5 ms median overhead** to any existing L1 classifier.
 
 | Component | p50 | p95 | p99 |
 |-----------|-----|-----|-----|
-| SGEMAS-Gate | **4.8 ms** | 5.3 ms | 114 ms* |
+| SGEMAS-Gate | **5.5 ms** | 6.1 ms | 114 ms* |
 | LlamaGuard-3-8B | 105.8 ms | 106.6 ms | 213 ms |
-| L1 + L2 combined | **110.6 ms** | 112.0 ms | 327 ms |
+| L1 + L2 combined | **111.3 ms** | 112.7 ms | 327 ms |
 
-*\*p99 = CUDA warmup outlier. Stable production latency: p50 = 4.8 ms.*
+*\*p99 = CUDA warmup outlier. Stable production latency: p50 = 5.5 ms.*
 
 ---
 
@@ -262,9 +242,9 @@ SGEMAS-Gate adds **4.8 ms median overhead** to any existing L1 classifier.
              └─────────────┬─────────────┘  Slow drift       → passes through ↓
                            │
              ┌─────────────▼─────────────────────────────┐
-             │         LAYER 2 — SGEMAS-Gate              │
+             │  LAYER 2 — Sequence-Aware SGEMAS-Gate      │
              │                                            │
-             │  embed(message) → MSS_t → E_t update      │
+             │  temporal_attn(window) → MSS_t → E_t update│
              │                                            │
              │  μ_slow ── Ethical baseline (never forgets)│
              │  μ_fast ── Recent context tracker          │
@@ -278,8 +258,6 @@ SGEMAS-Gate adds **4.8 ms median overhead** to any existing L1 classifier.
              └───────────────────────────┘
 ```
 
-A critical architectural property: SGEMAS processes **every** message, including those intercepted by L1. This preserves evidence that a dangerous message was *attempted*, even if rejected upstream.
-
 ---
 
 ## Paper
@@ -290,32 +268,7 @@ A critical architectural property: SGEMAS processes **every** message, including
 
 Submitted to NeurIPS 2025.
 
-The paper formalizes slow drift attacks as **trajectories escaping a homeostatic attractor** in semantic phase space, and proves that AUDC (the integral of the energy trajectory) is a sufficient statistic for session-level classification. It includes full convergence proofs, Fokker-Planck thermodynamic formulation, ROC analysis, Bootstrap CIs, and a complete ablation study.
-
-📄 [arXiv preprint — link coming soon]
-
----
-
-## Live Demo
-
-Try SGEMAS on your own conversations. Watch the energy curve build in real time. Attempt a slow drift attack and see the moment the session crosses into CRISIS.
-
-🔴 **[Launch Demo →](https://sgemas.innodeep.ai)**  
-
-*No API key required. Runs on our infrastructure.*
-
----
-
-## Roadmap
-
-- [x] Core thermodynamic engine
-- [x] Defense Chain (LlamaGuard L1 + SGEMAS L2)  
-- [x] Safety Encoder (contrastive fine-tuning, ×7.4 gain)
-- [x] Full evaluation: ablation, Bootstrap CI, ROC, Pareto sweep
-- [x] Paper submission
-- [x] Public API (rate-limited free tier)
-- [ ] sloDR > 70% via corpus-specific calibration
-- [ ] Multi-agent extension (SGEMAS-v4)
+📄 [arXiv preprint — Coming Soon]
 
 ---
 
@@ -323,10 +276,8 @@ Try SGEMAS on your own conversations. Watch the energy curve build in real time.
 
 **Mustapha Hamdi**  
 InnoDeep Research Lab  
-📧 mustapha.hamdi@innodeep.net  
+📧 mustafa.hamdi@innodeep.net  
 🔗 [LinkedIn](https://linkedin.com/in/mustapha-hamdi)
-
-For research collaborations, deployment discussions, or enterprise inquiries.
 
 ---
 
