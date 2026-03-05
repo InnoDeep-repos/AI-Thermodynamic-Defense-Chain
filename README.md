@@ -19,7 +19,7 @@
 
 <br/>
 <div align="center">
-<img src="figures/dashboard.png" width="95%" alt="SGEMAS Dashboard Intercepting Attack"/>
+<img src="figures/dashboard2.png" width="95%" alt="SGEMAS Dashboard Intercepting Attack"/>
 <br/>
 <sub> Integrated Session-Aware Defense Chain.</sub>
 </div>
