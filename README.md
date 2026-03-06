@@ -10,7 +10,7 @@
 # SGEMAS
 ### Sequence-Aware Trajectory Engine
 
-**State-of-the-art Temporal Attention-based guardrail for LLM security.**  
+**Temporal Attention-based guardrail for LLM security.**  
 *Shift from stateless categorization to dynamic trajectory tracking.*
 
 <br/>
