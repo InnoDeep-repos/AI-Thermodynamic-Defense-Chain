@@ -1,7 +1,7 @@
 <div align="center">
 
 <img src="https://img.shields.io/badge/SGEMAS-v7.0.0--Premium-1A7A4A?style=for-the-badge&logoColor=white" />
-<img src="https://img.shields.io/badge/Year-2025-7B2D8B?style=for-the-badge" />
+<img src="https://img.shields.io/badge/Year-2026-7B2D8B?style=for-the-badge" />
 <img src="https://img.shields.io/badge/Latency-5.5ms_p50-27AE60?style=for-the-badge" />
 <img src="https://img.shields.io/badge/sloDR-53.3%25-E74C3C?style=for-the-badge" />
 
