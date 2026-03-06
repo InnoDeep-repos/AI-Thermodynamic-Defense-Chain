@@ -236,7 +236,7 @@ SGEMAS-Gate adds **5.5 ms median overhead** to any existing L1 classifier.
 
 *Mustapha Hamdi — InnoDeep Research Lab*
 
-Submitted to NeurIPS 2025.
+ 
 
 📄 [arXiv preprint — Coming Soon]
 
